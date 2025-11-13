@@ -1,514 +1,722 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>EcoLearn Academy — Environmental Education</title>
-  <meta name="description" content="EcoLearn Academy — Community-driven environmental education: courses, volunteer projects and youth programs." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="" crossorigin="anonymous">
-  <style>
-    /* Reset & base */
-    :root{
-      --bg:#f0faf1;
-      --card:#ffffff;
-      --green-dark:#1b5e20;
-      --green:#2e7d32;
-      --accent:#66bb6a;
-      --muted:#6b6b6b;
-      --glass: rgba(255,255,255,0.6);
-      --radius:12px;
-      --maxw:1100px;
-      --trans:300ms cubic-bezier(.2,.9,.3,1);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:linear-gradient(180deg, #f7fff7 0%, var(--bg) 60%);
-      color:#222;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
-    .container{width:92%;max-width:var(--maxw);margin:0 auto}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Network - Protect Earth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    /* Header */
-    header{
-      position:sticky;top:0;z-index:120;
-      backdrop-filter: blur(6px);
-      background: linear-gradient(90deg, rgba(46,125,50,0.95), rgba(76,175,80,0.95));
-      color: #fff;
-      box-shadow: 0 6px 18px rgba(20,60,20,0.08);
-    }
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.1rem}
-    .brand .logo{
-      width:44px;height:44px;border-radius:10px;
-      background:linear-gradient(135deg,var(--card),rgba(255,255,255,0.06));
-      display:inline-grid;place-items:center;color:var(--green-dark);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      font-size:1.25rem;
-    }
-    nav ul{display:flex;gap:18px;align-items:center;list-style:none}
-    nav a{color:rgba(255,255,255,0.95);font-weight:600;padding:8px 6px;border-radius:8px;transition:var(--trans)}
-    nav a:hover{background:rgba(255,255,255,0.08)}
-    .cta-btn{background:var(--card);color:var(--green-dark);padding:8px 14px;border-radius:999px;font-weight:700;box-shadow:0 6px 14px rgba(0,0,0,0.08)}
-    .cta-btn:hover{transform:translateY(-3px)}
+        :root {
+            --primary: #2e7d32;
+            --secondary: #4caf50;
+            --accent: #8bc34a;
+            --light: #e8f5e9;
+            --dark: #1b5e20;
+            --text: #333333;
+            --white: #ffffff;
+        }
 
-    /* mobile toggle */
-    .mobile-toggle{display:none;font-size:1.3rem;cursor:pointer;color:rgba(255,255,255,0.95)}
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-    /* Hero */
-    .hero{
-      min-height:68vh;display:grid;align-items:center;gap:28px;padding:56px 0;
-      background-image:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=60');
-      background-size:cover;background-position:center;color:white;
-    }
-    .hero .overlay{background:linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,0,0,0.08));padding:60px;border-radius:16px;backdrop-filter:blur(2px)}
-    .hero h1{font-size:clamp(1.6rem,3.6vw,2.8rem);line-height:1.05;margin-bottom:10px;text-shadow:0 6px 20px rgba(0,0,0,0.45)}
-    .hero p{max-width:720px;font-size:1.05rem;color:rgba(255,255,255,0.9);margin-bottom:18px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-    /* Sections */
-    section{padding:64px 0}
-    .section-title{text-align:center;margin-bottom:26px}
-    .section-title h2{color:var(--green-dark);font-size:1.6rem;margin-bottom:6px}
-    .section-title p{color:var(--muted);max-width:760px;margin:0 auto}
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    /* About */
-    .about{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-    .about-card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(10,30,10,0.05)}
-    .about-card h3{color:var(--green-dark);margin-bottom:10px}
-    .about-features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
-    .feature{display:flex;gap:10px;align-items:flex-start}
-    .feature i{font-size:1.2rem;color:var(--accent);min-width:34px;height:34px;border-radius:8px;background:linear-gradient(180deg, rgba(102,187,106,0.12), rgba(102,187,106,0.06));display:grid;place-items:center}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* Courses */
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:linear-gradient(180deg,var(--card),#fbfff9);padding:18px;border-radius:14px;box-shadow:0 12px 30px rgba(30,60,20,0.04);transition:transform .25s ease,box-shadow .25s ease}
-    .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(30,60,20,0.07)}
-    .card .thumb{height:140px;overflow:hidden;border-radius:10px;margin-bottom:14px}
-    .card h4{margin-bottom:8px;color:var(--green-dark)}
-    .card p{color:var(--muted);font-size:0.95rem;margin-bottom:12px}
-    .card .meta{display:flex;justify-content:space-between;align-items:center;font-size:0.9rem;color:var(--muted)}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
 
-    /* Stats */
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
-    .stat{background:linear-gradient(180deg,var(--card),#fbfff9);padding:18px;border-radius:12px;text-align:center;box-shadow:0 8px 22px rgba(10,30,10,0.03)}
-    .stat .num{font-size:1.6rem;color:var(--green);font-weight:800}
-    .stat p{color:var(--muted);margin-top:6px}
+        .logo i {
+            font-size: 2rem;
+        }
 
-    /* Events & volunteer */
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .event{display:flex;gap:12px;padding:14px;border-radius:10px;background:var(--card);align-items:center}
-    .event img{width:92px;height:72px;object-fit:cover;border-radius:8px}
-    .volunteer-cta{padding:18px;border-radius:12px;background:linear-gradient(90deg,var(--green),var(--accent));color:white;box-shadow:0 10px 30px rgba(46,125,50,0.14)}
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
 
-    /* Contact */
-    .contact-wrap{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:start}
-    .form{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 12px 28px rgba(0,0,0,0.04)}
-    .form label{display:block;font-size:0.9rem;margin-bottom:6px;color:#333;font-weight:600}
-    .form input,.form textarea,.form select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6ece2;background:transparent;margin-bottom:12px}
-    .form button{background:var(--green-dark);color:white;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-    .form small{color:var(--muted)}
+        nav ul li {
+            margin-left: 2rem;
+        }
 
-    /* Footer */
-    footer{background:var(--green-dark);color:#fff;padding:36px 0;margin-top:20px}
-    .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .footer-grid h4{margin-bottom:8px}
-    .socials{display:flex;gap:10px}
-    .socials a{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);display:grid;place-items:center;color:white}
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
 
-    /* Small screens */
-    @media (max-width:992px){
-      .cards{grid-template-columns:repeat(2,1fr)}
-      .about{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
-      .stats{grid-template-columns:repeat(2,1fr)}
-      .contact-wrap{grid-template-columns:1fr}
-      .footer-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:680px){
-      nav ul{display:none}
-      .mobile-toggle{display:block}
-      .hero{padding:36px 0}
-      .cards{grid-template-columns:1fr}
-      .stats{grid-template-columns:1fr}
-      .footer-grid{grid-template-columns:1fr}
-    }
+        nav ul li a:hover {
+            color: var(--accent);
+        }
 
-    /* simple appear animation */
-    .reveal{opacity:0;transform:translateY(14px);transition:all .7s ease;will-change:opacity,transform}
-    .reveal.visible{opacity:1;transform:none}
-    .small{font-size:0.9rem;color:var(--muted)}
-  </style>
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--text);
+        }
+
+        .initiatives {
+            background-color: var(--white);
+        }
+
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .initiative-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .initiative-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .initiative-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .initiative-card:hover .initiative-img img {
+            transform: scale(1.1);
+        }
+
+        .initiative-content {
+            padding: 1.5rem;
+        }
+
+        .initiative-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .initiative-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta .btn {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        .cta .btn:hover {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-column p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .initiatives-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .initiatives-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for stats counter */
+        .counter {
+            transition: all 0.5s ease;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container nav">
-      <div class="brand" aria-label="EcoLearn Academy">
-        <div class="logo" aria-hidden="true"><i class="fas fa-leaf"></i></div>
-        <div>
-          <div style="font-weight:800">EcoLearn Academy</div>
-          <div style="font-size:0.82rem;opacity:0.9">Community Environmental Education</div>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>Green Network</span>
+            </div>
+            <nav>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#initiatives">Initiatives</a></li>
+                    <li><a href="#get-involved">Get Involved</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
+    </header>
 
-      <nav aria-label="Main navigation">
-        <div class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
-        <ul id="mainNav">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#courses">Courses</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#get-involved">Get Involved</a></li>
-        </ul>
-      </nav>
-
-      <div style="display:flex;gap:10px;align-items:center">
-        <a class="cta-btn" href="#get-involved">Join</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <main>
-    <section id="home" class="hero">
-      <div class="container overlay reveal">
-        <h1>Learn. Act. Protect. — Environmental Education for Everyone</h1>
-        <p>EcoLearn Academy offers community-driven courses and projects that empower students, volunteers, and teachers to take action for nature. Practical, inclusive and free-to-access learning pathways.</p>
-        <div class="hero-actions">
-          <a class="cta-btn" href="#courses">Explore Courses</a>
-          <a class="small" href="#about" style="align-self:center;background:transparent;color:#fff;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.12)">About Us</a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Protect Our Planet, Preserve Our Future</h1>
+            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
+            <a href="#get-involved" class="btn">Join Our Network</a>
         </div>
-        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-          <div class="small" style="background:rgba(255,255,255,0.06);padding:8px 10px;border-radius:999px">Youth Programs • Workshops • Community Projects</div>
-          <div class="small" style="background:rgba(255,255,255,0.06);padding:8px 10px;border-radius:999px">Free Resources • Local Chapters • Volunteer Credits</div>
-        </div>
-      </div>
     </section>
 
-    <!-- About -->
+    <!-- About Section -->
     <section id="about">
-      <div class="container">
-        <div class="section-title reveal">
-          <h2>About EcoLearn Academy</h2>
-          <p>We are an environmental education nonprofit that builds community knowledge and hands-on skills — from school programs to citizen science.</p>
-        </div>
-
-        <div class="about reveal">
-          <div class="about-card">
-            <h3>Our Mission</h3>
-            <p>To make environmental literacy accessible. We run teacher trainings, youth clubs, public workshops and real-world restoration projects.</p>
-            <div class="about-features">
-              <div class="feature"><i class="fas fa-chalkboard-teacher"></i><div><strong>Teacher Training</strong><div class="small">Pedagogy & curriculum support</div></div></div>
-              <div class="feature"><i class="fas fa-hands-helping"></i><div><strong>Community Projects</strong><div class="small">Local habitat restoration</div></div></div>
-              <div class="feature"><i class="fas fa-flask"></i><div><strong>Citizen Science</strong><div class="small">Data-driven learning</div></div></div>
-              <div class="feature"><i class="fas fa-book-open"></i><div><strong>Open Resources</strong><div class="small">Lesson plans & guides</div></div></div>
+        <div class="container">
+            <div class="section-title">
+                <h2>About Green Network</h2>
+                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
             </div>
-          </div>
-
-          <div style="display:flex;flex-direction:column;gap:12px">
-            <div class="about-card" style="padding:14px;overflow:hidden">
-              <img src="https://images.unsplash.com/photo-1520975910052-0a78a7f1a9df?auto=format&fit=crop&w=1200&q=60" alt="students outdoors">
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
+                </div>
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
+                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
+                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
             </div>
-            <div class="about-card small">
-              <strong>Founded</strong> 2014 • <strong>Chapters</strong> 65+ • <strong>Volunteers</strong> 8,400+
-              <div style="margin-top:12px" class="small">We partner with schools, parks and local NGOs to co-create hands-on learning experiences.</div>
+            <div class="stats">
+                <div class="stat-item">
+                    <i class="fas fa-tree"></i>
+                    <h3 class="counter" data-target="2500000">0</h3>
+                    <p>Trees Planted</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h3 class="counter" data-target="50000">0</h3>
+                    <p>Active Members</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3 class="counter" data-target="120">0</h3>
+                    <p>Countries Reached</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-recycle"></i>
+                    <h3 class="counter" data-target="1500">0</h3>
+                    <p>Cleanup Projects</p>
+                </div>
             </div>
-          </div>
         </div>
-
-        <!-- Stats -->
-        <div class="stats reveal" style="margin-top:22px">
-          <div class="stat">
-            <div class="num" data-target="12000">0</div>
-            <p>Students Trained</p>
-          </div>
-          <div class="stat">
-            <div class="num" data-target="8400">0</div>
-            <p>Active Volunteers</p>
-          </div>
-          <div class="stat">
-            <div class="num" data-target="65">0</div>
-            <p>Local Chapters</p>
-          </div>
-          <div class="stat">
-            <div class="num" data-target="320">0</div>
-            <p>Projects Completed</p>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- Courses -->
-    <section id="courses">
-      <div class="container">
-        <div class="section-title reveal"><h2>Featured Courses</h2><p>Short, practical and community-focused modules — suitable for teachers, teens and adults.</p></div>
-
-        <div class="cards reveal">
-          <article class="card">
-            <div class="thumb"><img src="https://images.unsplash.com/photo-1529336024867-4d3f8a86e1f8?auto=format&fit=crop&w=1200&q=60" alt="reforestation"></div>
-            <h4>Practical Reforestation: From Seedling to Forest</h4>
-            <p>Learn site assessment, native species selection, and hands-on planting techniques with follow-up monitoring methods.</p>
-            <div class="meta"><span>6 weeks • Online + Field</span><span><strong>Free</strong></span></div>
-          </article>
-
-          <article class="card">
-            <div class="thumb"><img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=60" alt="marine"></div>
-            <h4>Coastal Conservation & Plastic Solutions</h4>
-            <p>Study marine ecosystems, community beach cleanups, and low-cost plastic alternatives for local shops and schools.</p>
-            <div class="meta"><span>4 weeks • Project-based</span><span><strong>$10</strong></span></div>
-          </article>
-
-          <article class="card">
-            <div class="thumb"><img src="https://images.unsplash.com/photo-1527751171012-8a4d62d6c42b?auto=format&fit=crop&w=1200&q=60" alt="renewable energy learning"></div>
-            <h4>Renewables for Schools: Solar Basics</h4>
-            <p>Hands-on solar kits, budgeting, and simple maintenance to bring small-scale renewable projects to classrooms.</p>
-            <div class="meta"><span>3 weeks • Workshop</span><span><strong>Free</strong></span></div>
-          </article>
+    <!-- Initiatives Section -->
+    <section class="initiatives" id="initiatives">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Initiatives</h2>
+                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+            </div>
+            <div class="initiatives-grid">
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>Global Reforestation</h3>
+                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>Ocean Conservation</h3>
+                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>Renewable Energy</h3>
+                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Events -->
-    <section id="events">
-      <div class="container">
-        <div class="section-title reveal"><h2>Upcoming Events</h2><p>Join our next workshops and community days — practical learning with local impact.</p></div>
-
-        <div class="grid-2 reveal">
-          <div>
-            <div class="event">
-              <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=800&q=60" alt="tree planting">
-              <div>
-                <strong>Spring Tree Planting — Riverside Park</strong>
-                <div class="small">Sat, Mar 21 • 9:00 AM - 1:00 PM</div>
-              </div>
-            </div>
-
-            <div class="event" style="margin-top:12px">
-              <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=60" alt="beach cleanup">
-              <div>
-                <strong>Community Beach Cleanup</strong>
-                <div class="small">Sun, Apr 12 • 8:00 AM - 11:30 AM</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="volunteer-cta">
-              <h3 style="margin:0 0 6px">Volunteer with Us</h3>
-              <p style="margin:0 0 12px">Help lead workshops, mentor youth clubs, or support data collection. Volunteering counts toward course credit.</p>
-              <a href="#get-involved" class="cta-btn" style="background:white;color:var(--green-dark">Sign Up to Volunteer</a>
-            </div>
-          </div>
+    <!-- CTA Section -->
+    <section class="cta" id="get-involved">
+        <div class="container">
+            <h2>Join Our Global Movement</h2>
+            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
+            <a href="#" class="btn">Become a Member</a>
         </div>
-      </div>
     </section>
 
-    <!-- Contact / Get Involved -->
-    <section id="get-involved">
-      <div class="container">
-        <div class="section-title reveal"><h2>Get Involved</h2><p>Whether you're a teacher, student, or concerned citizen — there's a role for you.</p></div>
-
-        <div class="contact-wrap reveal">
-          <div class="form">
-            <h3 style="margin-top:0">Join a Program / Ask a Question</h3>
-            <form id="signupForm" onsubmit="return handleSubmit(event)" novalidate>
-              <label for="name">Full name</label>
-              <input id="name" name="name" placeholder="Your name" required>
-
-              <label for="email">Email</label>
-              <input id="email" type="email" name="email" placeholder="you@example.org" required>
-
-              <label for="role">I am a</label>
-              <select id="role" name="role">
-                <option>Student</option>
-                <option>Teacher</option>
-                <option>Volunteer</option>
-                <option>Community member</option>
-              </select>
-
-              <label for="message">Message / Notes</label>
-              <textarea id="message" rows="5" placeholder="Which program are you interested in?"></textarea>
-
-              <button type="submit">Send Request</button>
-              <div id="formMsg" style="margin-top:10px" class="small"></div>
-            </form>
-          </div>
-
-          <aside style="display:flex;flex-direction:column;gap:12px">
-            <div style="background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.04)">
-              <h4 style="margin:0 0 6px">Contact</h4>
-              <p class="small" style="margin-bottom:6px"><i class="fas fa-map-marker-alt"></i> Greenway House, Copper Creek</p>
-              <p class="small"><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-              <p class="small"><i class="fas fa-envelope"></i> info@ecolearn.org</p>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Green Network</h3>
+                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#initiatives">Initiatives</a></li>
+                        <li><a href="#get-involved">Get Involved</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Our Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Reforestation</a></li>
+                        <li><a href="#">Ocean Cleanup</a></li>
+                        <li><a href="#">Wildlife Protection</a></li>
+                        <li><a href="#">Climate Education</a></li>
+                        <li><a href="#">Sustainable Agriculture</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
+                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
+                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+                </div>
             </div>
-
-            <div style="background:linear-gradient(180deg,#fff, #f6fff7);padding:14px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.04)">
-              <h4 style="margin:0 0 6px">Newsletter</h4>
-              <p class="small" style="margin-bottom:8px">Monthly updates about courses and local events.</p>
-              <div style="display:flex;gap:8px">
-                <input id="newsletterEmail" placeholder="you@example.org" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6efe4">
-                <button onclick="subscribeNewsletter()" style="padding:8px 10px;border-radius:8px;border:none;background:var(--green-dark);color:white;font-weight:700;cursor:pointer">Subscribe</button>
-              </div>
-              <div id="newsMsg" class="small" style="margin-top:8px"></div>
+            <div class="copyright">
+                <p>&copy; 2025 Green Network. All rights reserved.</p>
             </div>
-          </aside>
         </div>
-      </div>
-    </section>
-  </main>
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h4>EcoLearn Academy</h4>
-          <p class="small">Practical environmental education — community-first, science-backed.</p>
-          <div style="margin-top:10px" class="socials">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-        <div>
-          <h4>Programs</h4>
-          <p class="small">Reforestation • Coastal Care • Renewable Workshops • Teacher Training</p>
-        </div>
-        <div>
-          <h4>Resources</h4>
-          <p class="small">Lesson Plans • Project Toolkits • Citizen Science Guides</p>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <p class="small">info@ecolearn.org • +1 (312) 171-0771</p>
-        </div>
-      </div>
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
 
-      <div style="text-align:center;margin-top:20px;color:rgba(255,255,255,0.8);font-size:0.9rem">
-        &copy; <span id="year"></span> EcoLearn Academy. All rights reserved.
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // ===== mobile menu =====
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mainNav = document.getElementById('mainNav');
-
-    mobileToggle && mobileToggle.addEventListener('click', () => {
-      if (mainNav.style.display === 'flex') {
-        mainNav.style.display = '';
-      } else {
-        mainNav.style.display = 'flex';
-        mainNav.style.flexDirection = 'column';
-        mainNav.style.background = 'linear-gradient(90deg, rgba(46,125,50,0.98), rgba(76,175,80,0.98))';
-        mainNav.style.position = 'absolute';
-        mainNav.style.right = '14px';
-        mainNav.style.top = '64px';
-        mainNav.style.padding = '10px';
-        mainNav.style.borderRadius = '10px';
-      }
-    });
-
-    // ===== smooth scrolling =====
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        const el = document.querySelector(href);
-        if (!el) return;
-        e.preventDefault();
-        const top = el.getBoundingClientRect().top + window.pageYOffset - 70;
-        window.scrollTo({ top, behavior: 'smooth' });
-        if (mainNav) mainNav.style.display = '';
-      });
-    });
-
-    // ===== reveal on scroll =====
-    const revealEls = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(ent=>{
-        if(ent.isIntersecting){
-          ent.target.classList.add('visible');
-          obs.unobserve(ent.target);
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200; // The lower the slower
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                
+                const inc = target / speed;
+                
+                if(count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
         }
-      });
-    }, {threshold: 0.12});
-    revealEls.forEach(el=>obs.observe(el));
 
-    // ===== counters =====
-    function animateCounter(el, target, duration=1500) {
-      let start = 0, startTime = null;
-      function step(ts){
-        if (!startTime) startTime = ts;
-        const progress = Math.min((ts - startTime) / duration, 1);
-        const val = Math.floor(progress * (target - start) + start);
-        el.textContent = val.toLocaleString();
-        if (progress < 1) requestAnimationFrame(step);
-        else el.textContent = target.toLocaleString();
-      }
-      requestAnimationFrame(step);
-    }
-    const counters = document.querySelectorAll('.num');
-    const cObs = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const el = entry.target;
-          const target = parseInt(el.getAttribute('data-target') || '0', 10);
-          animateCounter(el, target, 1400);
-          cObs.unobserve(el);
-        }
-      });
-    }, {threshold:0.2});
-    counters.forEach(c=>cObs.observe(c));
+        // Initialize counters when page loads
+        window.addEventListener('load', animateCounters);
 
-    // ===== simple form handling (no backend) =====
-    function handleSubmit(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const role = document.getElementById('role').value;
-      const msg = document.getElementById('message').value.trim();
-      const formMsg = document.getElementById('formMsg');
-
-      if(!name || !email){
-        formMsg.textContent = 'Please fill in your name and email.';
-        formMsg.style.color = 'crimson';
-        return false;
-      }
-      // fake "submission"
-      formMsg.style.color = 'green';
-      formMsg.textContent = `Thanks ${name.split(' ')[0] || ''}! We've received your request as a ${role}. Check ${email} for details. (This is a demo form.)`;
-      e.target.reset();
-      return false;
-    }
-
-    // newsletter demo
-    function subscribeNewsletter(){
-      const email = document.getElementById('newsletterEmail').value.trim();
-      const newsMsg = document.getElementById('newsMsg');
-      if(!email || !email.includes('@')){
-        newsMsg.style.color='crimson'; newsMsg.textContent='Enter a valid email.';
-        return;
-      }
-      newsMsg.style.color='green'; newsMsg.textContent='Subscribed! (Demo)';
-      document.getElementById('newsletterEmail').value='';
-    }
-
-    // set year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // add simple keyboard accessibility for mobile toggle
-    mobileToggle && mobileToggle.setAttribute('tabindex','0');
-    mobileToggle && mobileToggle.addEventListener('keypress', (e)=>{
-      if(e.key === 'Enter' || e.key === ' ') mobileToggle.click();
-    });
-  </script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
